@@ -1,0 +1,17 @@
+<ion-item lines="none" class="custom-select">
+  <ion-label position="stacked">{{ placeholder }}</ion-label>
+  <ion-select 
+    interface="popover"
+    style= "border-bottom: 1px solid orange"
+    [value]="selectedCountry"
+    [disabled]="disabled"
+    (ionChange)="onCountrySelected($event)">
+    
+    <ion-select-option *ngFor="let country of countries" [value]="country.name">
+      {{ country.unicodeFlag }} {{ country.name }}
+    </ion-select-option>
+    
+  </ion-select>
+</ion-item>
+
+<ion-spinner *ngIf="loading"></ion-spinner>

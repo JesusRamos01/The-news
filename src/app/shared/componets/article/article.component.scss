@@ -1,0 +1,45 @@
+ion-card {
+    max-width: 300px;   /* ancho máximo de la card */
+    height: 380px;      /* alto fijo para todas */
+    margin: 8px auto;   /* centrado y separación */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* reparte bien el contenido */
+    overflow: hidden;   /* evita que se desborde */
+  
+    ion-img {
+      width: 100%;
+      height: 160px;        /* altura fija para la imagen */
+      object-fit: cover;    /* recorta sin deformar */
+    }
+  
+    ion-card-title {
+      font-size: 0.95rem;
+      font-weight: bold;
+      line-height: 1.3;
+      margin: 4px 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;   /* máximo 2 líneas */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    ion-card-content {
+      flex-grow: 1;
+      padding: 0 8px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;   /* máximo 3 líneas */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    ion-card-subtitle {
+      font-size: 0.75rem;
+      color: #666;
+      margin: 4px 8px;
+    }
+}

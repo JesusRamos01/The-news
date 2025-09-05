@@ -1,0 +1,13 @@
+<ion-input 
+  style ="border-bottom: 1px solid orange" 
+  [label]="label"
+  [type]="type" 
+  [placeholder]="placeholder" 
+  labelPlacement="stacked"
+  [value]="control.value" 
+  (keyup)="doWrite($event)" 
+  >
+  @if (type == 'password') {
+    <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+  }
+</ion-input>

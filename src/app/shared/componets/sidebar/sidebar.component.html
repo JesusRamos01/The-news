@@ -1,0 +1,12 @@
+<ion-menu [contentId]="contentId" [menuId]="menuId" side="end" type="overlay">
+  <app-header [title]="title" avatarUrl="https://ionicframework.com/docs/img/demos/avatar.svg"> 
+  </app-header>
+
+  <ion-content>
+   <app-list 
+   [items]="menuItems"
+   (selectItem)="onSelect($event)">
+    
+   </app-list>
+  </ion-content>
+</ion-menu>

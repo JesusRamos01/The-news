@@ -1,0 +1,14 @@
+<app-header [showAvatar]="false" title="Noticias" menuId="mainMenu">
+</app-header>
+
+<app-sidebar title="Menu" menuId="mainMenu" contentId="menu-content" (selectCategory)="onCategorySelected($event)">
+</app-sidebar>
+
+<ion-content id="menu-content">
+
+  <app-card [articles]="articles"></app-card>
+<ion-infinite-scroll threshold="25%"  position="bottom" (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
