@@ -1,5 +1,6 @@
 <ion-menu [contentId]="contentId" [menuId]="menuId" side="end" type="overlay">
-  <app-header [title]="title" avatarUrl="https://ionicframework.com/docs/img/demos/avatar.svg"> 
+  <app-header [title]="userName || 'Invitado'" avatarUrl="https://ionicframework.com/docs/img/demos/avatar.svg"> 
+    
   </app-header>
 
   <ion-content>
@@ -8,5 +9,8 @@
    (selectItem)="onSelect($event)">
     
    </app-list>
+   <ion-item button (click)="logout()">
+    Logout
+  </ion-item>
   </ion-content>
 </ion-menu>

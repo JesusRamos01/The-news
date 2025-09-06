@@ -7,8 +7,8 @@
 <ion-content id="menu-content">
 
   <app-card [articles]="articles"></app-card>
-<ion-infinite-scroll threshold="25%"  position="bottom" (ionInfinite)="loadData($event)">
-  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+  <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

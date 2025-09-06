@@ -12,9 +12,6 @@ export class HeaderComponent  implements OnInit {
   @Input() menuId: string = 'main-menu';
   @Input() avatarUrl?: string ;
 
-  // Datos del usuario
-  //@Input() userName: string = '';
- // @Input() userEmail: string = '';
   constructor() { }
 
   ngOnInit() {}

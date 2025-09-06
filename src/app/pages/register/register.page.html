@@ -1,79 +1,63 @@
 <ion-content [fullscreen]="true">
- <form  [formGroup]="registerForm" 
-        (ngSubmit)="doRegister()">
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <app-input 
-              label="Name" 
-              placeholder="Write your Name" 
-              type="text"
-              [control]="name">
-            </app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input 
-              label="Last Name" 
-              placeholder="Write your Last Name" 
-              type="text"
-              [control]="lastName">
-            </app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input 
-              label="Email" 
-              placeholder="Write your Email" 
-              type="email"
-              [control]="email">
-            </app-input>
-          </ion-col>
-        </ion-row>
+  <form [formGroup]="registerForm" (ngSubmit)="doRegister()">
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
           <ion-row>
             <ion-col>
-              <app-input 
-                label="Password" 
-                placeholder="Write your Password" 
-                type="password"
-                [control]="password">
+              <app-input label="Name" placeholder="Write your Name" type="text" [control]="name">
               </app-input>
             </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-input 
-            label="corfirm Password" 
-            placeholder="Write your Password" 
-            type="password"
-            [control]="confirmPassword">
-          </app-input>
-        </ion-col>
-  </ion-row>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-input label="Last Name" placeholder="Write your Last Name" type="text" [control]="lastName">
+              </app-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-input label="Email" placeholder="Write your Email" type="email" [control]="email">
+              </app-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-input label="Password" placeholder="Write your Password" type="password" [control]="password">
+              </app-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-input label="corfirm Password" placeholder="Write your Password" type="password"
+                [control]="confirmPassword">
+              </app-input>
+            </ion-col>
+          </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <app-select 
-            [countries]="countries" 
-            placeholder="Select your country"
-            >
-          </app-select>
-        </ion-col>
-  </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-button value="Register" 
-          type="submit"
-          [disabled]="registerForm.invalid">
-          </app-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>   
-  </ion-card-content>
-  </ion-card>
- </form>
+          <ion-row>
+            <ion-col>
+              <app-select [countries]="countries" placeholder="Select your country"
+                (countryChange)="registerForm.get('country')?.setValue($event)">
+              </app-select>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-text-center">
+            <ion-col>
+              <p>
+                Already registered?
+                <a (click)="goToLogin()">Login here</a>
+              </p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-button value="Register" type="submit" [disabled]="registerForm.invalid">
+              </app-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </form>
 </ion-content>

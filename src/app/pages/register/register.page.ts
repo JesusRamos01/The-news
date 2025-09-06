@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Countries } from 'src/app/services/countries'; 
+import { Countries } from 'src/app/shared/services/countries/countries'; 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/shared/services/user/user';
+import { Country } from 'src/app/interfaces';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,17 +23,21 @@ export class RegisterPage implements OnInit {
 
   public registerForm!: FormGroup;
 
-  constructor(private countriesService: Countries) {
+  constructor(private countriesService: Countries, private readonly userService: User, private router: Router) {
     this.initForm();
+    
+   
   }
 
   ngOnInit() {
     this.loadCountries();
   }
 
+  
   public doRegister() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
+      this.userService.register(this.registerForm.value);
       this.registerForm.reset();
     } else {
       console.log('Formulario inválido');
@@ -44,7 +51,7 @@ export class RegisterPage implements OnInit {
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.password = new FormControl('', [Validators.required, Validators.minLength(8)]);
     this.confirmPassword = new FormControl('', Validators.required);
-    this.country = new FormControl('', Validators.required);
+    this.country= new FormControl<Country | null>(null, Validators.required);
 
     this.registerForm = new FormGroup({
       name: this.name,
@@ -67,6 +74,9 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
   
 
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule}  from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Article, articlesByCategoryAndPage, NewsResponse } from '../interfaces';
+import { Article, articlesByCategoryAndPage, NewsResponse } from '../../../interfaces';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -34,9 +34,6 @@ export class News {
 
   public getArticlesByCategory(category: string): Observable<Article[]> {
    if (Object.keys(this.articleByCategoryAndPage).includes(category)) {
-    /// return new Observable(observer => {
-       //observer.next(this.articleByCategoryAndPage[category].articles);
-     //});
     
    }else{
     this.articleByCategoryAndPage[category] = { page: 0, articles: [] };
@@ -49,7 +46,6 @@ export class News {
       country: 'us',
       category: category,
       page: page.toString(),
-      apiKey: apiKey
     }
     
   })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { NewsResponse, Article } from 'src/app/interfaces';
-import { News } from 'src/app/services/news';
+import { News } from 'src/app/shared/services/news/news';
 import { ListItem } from 'src/app/interfaces';
 
   
@@ -45,15 +45,12 @@ export class HomePage implements OnInit {
     .subscribe(articles => this.articles.push(...articles));
 }
 
-loadData(event: any) {
+loadData(event: any) { 
  this.newService.getTopHeadLinesByCategory(this.selectedCategory, true)
  .subscribe(articles => {
    this.articles = articles;
 
- 
      event.target.complete();
-
-    
 
   });
 }

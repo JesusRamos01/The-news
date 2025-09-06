@@ -6,11 +6,21 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from "./shared/shared-module";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from '../app/shared/interceptors/interceptor/interceptor';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, SharedModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [BrowserModule, IonicModule.forRoot(
+    { _forceStatusbarPadding: true }
+  ), AppRoutingModule, HttpClientModule, SharedModule],
+  providers: [{
+    provide: RouteReuseStrategy, useClass: IonicRouteStrategy,
+  }, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Interceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

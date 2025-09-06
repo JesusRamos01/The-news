@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ListItem } from 'src/app/interfaces';
+import { User } from '../../services/user/user';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class SidebarComponent  implements OnInit {
   @Input() contentId: string = '';
   @Input() icon?: string;
 
+  userName: string = '';
   
   menuItems: ListItem[] = [
     { label: 'Business', value: 'business', icon: 'briefcase-outline' },
@@ -29,7 +31,7 @@ export class SidebarComponent  implements OnInit {
 
   @Output() selectCategory = new EventEmitter<ListItem>();
 
-  constructor(private menuCtrl: MenuController, private router: Router) { }
+  constructor(private menuCtrl: MenuController, private router: Router, private userService: User) { }
 
   onSelect(item: ListItem) {
     console.log('Sidebar: selected ->', item);  
@@ -39,6 +41,16 @@ export class SidebarComponent  implements OnInit {
   }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    const user = this.userService.getCurrentUser();
+    if (user) {
+      this.userName = `${user.name} ${user.lastName}`;
+    }
+  }
+
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['/login']);
+  }
 
 }

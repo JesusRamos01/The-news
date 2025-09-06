@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
 
-    <ion-buttons slot="start">
+    <ion-buttons slot="end">
       <ion-menu-button [menu]="menuId"></ion-menu-button>
     </ion-buttons>
 
@@ -10,16 +10,8 @@
         <img [src]="avatarUrl" alt="Avatar" />
       </ng-container>
       <ng-template #noAvatar>
-       <!-- <div class="avatar-placeholder">
-          {{ getInitials(userName) }}
-        </div>-->
       </ng-template>
     </ion-avatar>
-
-    <!--<div class="user-info">
-      <h2>{{ userName }}</h2>
-    /  <p>{{ userEmail }}</p>
-    </div>-->
 
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>

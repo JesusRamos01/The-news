@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Country } from 'src/app/interfaces';
-import { Countries } from 'src/app/services/countries';
+import { Countries } from 'src/app/shared/services/countries/countries';
 
 @Component({
   selector: 'app-select',
@@ -13,12 +13,12 @@ export class SelectComponent  implements OnInit {
   @Input() selectedCountry: string | null = null;
   @Input() disabled: boolean = false;
 
-  @Output() countryChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() countryChange: EventEmitter<Country> = new EventEmitter<Country>();
 
   constructor(private countriesService: Countries) { }
 
   loading: boolean = false;
-  @Input() countries: Country[] = []; // Define 'countries' como un @Input()
+  @Input() countries: Country[] = []; 
   
 
   ngOnInit() {

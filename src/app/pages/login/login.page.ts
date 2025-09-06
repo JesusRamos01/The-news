@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/shared/services/user/user'; 
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +15,7 @@ export class LoginPage implements OnInit {
   public password!: FormControl;
 
   public loginForm!: FormGroup;
-  constructor() { 
+  constructor(private readonly UserService: User,   private router: Router,  private toastController: ToastController) { 
     this.initForm();
   }
 
@@ -20,8 +23,21 @@ export class LoginPage implements OnInit {
   }
 
   public doLogin(){
-    console.log(this.loginForm.value);
-    this.loginForm.reset();
+    try {
+      const user = this.UserService.login(this.loginForm.value);
+
+      this.showToast(`Welcome ${user.name} ${user.lastName}`, 'success');
+      this.router.navigate(['/home']);
+
+    } catch (error: any) {
+      if (error.message === 'User not found') {
+        this.showToast('User does not exist ', 'danger');
+      } else if (error.message === 'Invalid credentials') {
+        this.showToast('Incorrect password ', 'danger');
+      } else {
+        this.showToast('Unexpected error ', 'warning');
+      }
+    }
   }
 
   private initForm(){
@@ -33,6 +49,19 @@ export class LoginPage implements OnInit {
     email: this.email,
     password: this.password
   })
+}
+
+private async showToast(message: string, color: string) {
+  const toast = await this.toastController.create({
+    message,
+    duration: 2000,
+    color,
+  });
+  await toast.present();
+}
+
+goToRegister() {
+  this.router.navigate(['/register']);
 }
 
 }
